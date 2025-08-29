@@ -2,8 +2,8 @@ from django.db import models
 
 # Create your models here.
 class Category(models.Model):
-    name = model.CharField(max_length = 100, unique = True)
-    description = model.TextField(blank = True, null = True)
+    name = models.CharField(max_length = 100, unique = True)
+    description = models.TextField(blank = True, null = True)
 
     def __str__(self):
         return self.name
@@ -21,6 +21,6 @@ class Product(models.Model):
 
     @property
     def is_low_stock(self):
-        return self.stock <= self.low_stock_threshold
+        return self.stock_quantity <= 10
 
 

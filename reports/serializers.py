@@ -1,12 +1,7 @@
 from rest_framework import serializers
-from .models import SalesReport, InventoryTurnover
+from .models import Report
 
-class SalesReportSerializer(serializers.ModelSerializer):
+class ReportSerializer(serializers.ModelSerializer):
     class Meta:
-        model = SalesReport
-        fields = '__all__'
-
-class InventoryTurnoverSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = InventoryTurnover
-        fields = '__all__'
+        model = Report
+        fields = "__all__"

@@ -1,15 +1,18 @@
 from django.db import models
-from inventory.models import Product
+from django.conf import settings
 
-class SalesReport(models.Model):
-    start_date = models.DateField()
-    end_date = models.DateField()
-    total_sales = models.DecimalField(max_digits=12, decimal_places=2)
-    top_selling_products = models.TextField()
+class Report(models.Model):
+    REPORT_TYPES = [
+        ("sales", "Sales Report"),
+        ("inventory", "Inventory Report"),
+        ("user", "User Activity Report"),
+    ]
 
-class InventoryTurnover(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    times_sold = models.PositiveIntegerField()
-    period_start = models.DateField()
-    period_end = models.DateField()
+    name = models.CharField(max_length=100)
+    report_type = models.CharField(max_length=20, choices=REPORT_TYPES)
+    generated_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    file = models.FileField(upload_to="reports/", blank=True, null=True)
 
+    def __str__(self):
+        return f"{self.name} ({self.report_type})"
