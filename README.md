@@ -25,9 +25,9 @@ A digital inventory and order management system for small shops
 
 ```json
 {
-  "username": "johndoe",
-  "email": "johndoe@example.com",
-  "password": "strongpassword123"
+  "username": "user2",
+  "email": "user2@gmail.com.com",
+  "password": "userpassword123"
 }
 ```
 
